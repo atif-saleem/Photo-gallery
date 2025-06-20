@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        ul{
+            display: flex;
+            gap: 5px;
+            border-radius: 10px;
+            flex-wrap: wrap;
+        }
+        ul li{
+            width: 400px;
+            list-style: none;
+            
+        }
+        li img{
+            width: 100%;
+        }
+        img.check{
+            width: 1200px;
+            height: 500px;
+            object-fit: cover;
+            order: 1;
+            z-index: 1;
+        }
+        .pop-up{
+            width:1200px;
+            height: 500px;
+            margin-bottom: 30px;
+            margin: auto;
+            position: relative;
+            position: absolute;
+            
+            transform: scale(0);
+
+            transition: all 0.3s ease-in-out;
+
+        }
+        .pop-up img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .cross-btn{
+            font-size: 48px;
+            font-weight: 700;
+            position: absolute;
+            right: 16px;
+                top: 0px;
+                cursor: pointer;
+        }
+         .container.show .pop-up {
+            /* display: block; */
+            position: static;
+            transform: scale(1);
+        }
+        .overlay{
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            inset: 0;
+            display: none;
+        }
+        .container.show .overlay{
+            display: block;
+        }
+        @media screen and (max-width:500px) {
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+             ul li{
+            width: 126px;
+            list-style: none;
+            
+        }
+        ul{
+            flex-wrap: wrap;
+        }
+         .pop-up{
+            width:390px;
+            height: 200px;
+           margin-bottom: 30px;
+
+        }
+        }
+    </style>
+</head>
+<body>
+   <h1 style="text-align: center; color: blue; margin-top: 20px;">Welcome to Gallery</h1> 
+  <div class="container">
+     <div class="overlay"></div>
+   <div class="pop-up">
+    <img id="popUp-img" src="image/imaga01.png" alt="">
+    <div class="cross-btn">&times;</div>
+</div>
+  </div>
+   <div class="Gallery">
+     <ul>
+        <li ><img src="image/imaga01.png" alt=""></li>
+        <li ><img src="image/imaga02.png" alt=""></li>
+        <li ><img src="image/imaga03.png" alt=""></li>
+        <li ><img src="image/imaga04.png" alt=""></li>
+        <li ><img src="image/imaga05.png" alt=""></li>
+        <li ><img src="image/imaga06.png" alt=""></li>
+        <li ><img src="image/imaga07.png" alt=""></li>
+     </ul>
+   </div><script>
+    let img=document.querySelectorAll("img");
+    let popUp=document.querySelector(".pop-up");
+    let container=document.querySelector(".container")
+    let  btn=document.querySelector(".cross-btn")
+    let popUpImg=document.querySelector("#popUp-img")
+   
+    img.forEach((img)=>{
+       
+    
+ img.addEventListener("click",()=>{
+    container.classList.add("show");
+    console.log(popUpImg.src=img.src)
+    })
+    })
+    btn.addEventListener("click",()=>{
+    container.classList.remove("show")
+    })
+   
+   </script>
+</body>
+</html>
